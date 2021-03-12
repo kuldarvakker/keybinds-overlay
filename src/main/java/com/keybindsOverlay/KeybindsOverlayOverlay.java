@@ -13,13 +13,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 
-public class keybindsOverlayOverlay extends Overlay {
+public class KeybindsOverlayOverlay extends Overlay {
 
-    private final keybindsOverlayConfig config;
+    private final KeybindsOverlayConfig config;
     private final PanelComponent panelComponent = new PanelComponent();
 
     @Inject
-    private keybindsOverlayOverlay(keybindsOverlayConfig config)
+    private KeybindsOverlayOverlay(KeybindsOverlayConfig config)
     {
         setPosition(OverlayPosition.ABOVE_CHATBOX_RIGHT);
         setPriority(OverlayPriority.HIGH);
@@ -27,15 +27,14 @@ public class keybindsOverlayOverlay extends Overlay {
 
     }
 
+
     @Override
-    public Dimension render(Graphics2D graphics)
-    {
+    public Dimension render(Graphics2D graphics) {
 
         panelComponent.getChildren().clear();
 
         panelComponent.setOrientation(ComponentOrientation.HORIZONTAL);
         panelComponent.setGap(new Point(20, 0));
-
 
         addKeybinding(sidePanelTabs.COMBAT);
         addKeybinding(sidePanelTabs.SKILLS);
@@ -44,7 +43,6 @@ public class keybindsOverlayOverlay extends Overlay {
         addKeybinding(sidePanelTabs.EQUIPMENT);
         addKeybinding(sidePanelTabs.PRAYER);
         addKeybinding(sidePanelTabs.SPELLBOOK);
-
 
         return panelComponent.render(graphics);
     }
@@ -72,4 +70,5 @@ public class keybindsOverlayOverlay extends Overlay {
             addLine("");
         }
     }
+
 }

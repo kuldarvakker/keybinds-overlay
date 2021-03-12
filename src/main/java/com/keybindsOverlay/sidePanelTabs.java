@@ -15,12 +15,16 @@ public enum sidePanelTabs {
 
 
     public BufferedImage getIcon() {
-        return ImageUtil.resizeImage(ImageUtil
-                .loadImageResource(getClass(), "/sidePanel/tabs/"+ name().toLowerCase() + ".png"), 18, 18);
+        try {
+            return ImageUtil.resizeImage(ImageUtil.loadImageResource(getClass(), "/sidePanel/tabs/"+ name().toLowerCase() + ".png"), 18, 18);
+        } catch (Exception e) {
+            System.err.println("errorLoading image");
+        }
+        throw new RuntimeException("Shouldn't be here.");
     }
 
     public Method getKeybinding() {
-        Method[] methods = keybindsOverlayConfig.class.getMethods();
+        Method[] methods = KeybindsOverlayConfig.class.getMethods();
         Pattern pattern = Pattern.compile(name().toLowerCase());
         for (Method method : methods) {
             Matcher matcher = pattern.matcher(method.getName());
