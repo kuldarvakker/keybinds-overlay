@@ -5,7 +5,7 @@
 
 * Enable plugin.
 * Overlay visualises the keys in the plugin panel.
-* Best when used with resizeable layouts.
+* Best when used with resizeable layouts.\
 ![Image of available layouts](/readme_images/01.jpg)
 ## Panel view
 
