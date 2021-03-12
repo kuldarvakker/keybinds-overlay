@@ -1,11 +1,11 @@
 # Keybind overlay
-It is easier to learn keybinds, when they are at your sight.
+* It is easier to learn keybinds, when they are at your sight.
 
 ## Quick guide
 
-Enable plugin.
-Changing the key in panel, changes it on the overlay.
-It is meant to be used with resizeable layouts.
+* Enable plugin.
+* Overlay visualises the keys in the plugin panel.
+* Best when used with resizeable layouts.
 ![Image of available layouts](/readme_images/01.jpg)
 ## Panel view
 
