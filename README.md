@@ -12,7 +12,7 @@
 ![Image of the panel](/readme_images/update_02.jpg)
 
 ## Overlay
-![Image of the overlay_update](/readme_images/update_02.jpg)
+![Image of the overlay_update](/readme_images/update_01.jpg)
 ![Image of the overlay](/readme_images/03.jpg)
 
 
