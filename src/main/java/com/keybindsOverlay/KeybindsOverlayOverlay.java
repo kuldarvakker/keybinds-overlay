@@ -1,5 +1,6 @@
 package com.keybindsOverlay;
 
+import net.runelite.client.config.Keybind;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
@@ -11,7 +12,6 @@ import net.runelite.client.ui.overlay.components.PanelComponent;
 import javax.inject.Inject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
 
 public class KeybindsOverlayOverlay extends Overlay {
 
@@ -36,13 +36,13 @@ public class KeybindsOverlayOverlay extends Overlay {
         panelComponent.setOrientation(ComponentOrientation.HORIZONTAL);
         panelComponent.setGap(new Point(20, 0));
 
-        addKeybinding(sidePanelTabs.COMBAT);
-        addKeybinding(sidePanelTabs.SKILLS);
-        addKeybinding(sidePanelTabs.QUESTS);
-        addKeybinding(sidePanelTabs.INVENTORY);
-        addKeybinding(sidePanelTabs.EQUIPMENT);
-        addKeybinding(sidePanelTabs.PRAYER);
-        addKeybinding(sidePanelTabs.SPELLBOOK);
+        addTabToPanel(sidePanelTabs.COMBAT);
+        addTabToPanel(sidePanelTabs.SKILLS);
+        addTabToPanel(sidePanelTabs.QUESTS);
+        addTabToPanel(sidePanelTabs.INVENTORY);
+        addTabToPanel(sidePanelTabs.EQUIPMENT);
+        addTabToPanel(sidePanelTabs.PRAYER);
+        addTabToPanel(sidePanelTabs.SPELLBOOK);
 
         return panelComponent.render(graphics);
     }
@@ -61,14 +61,15 @@ public class KeybindsOverlayOverlay extends Overlay {
                 .add(new ImageComponent(icon));
     }
 
-    private void addKeybinding(sidePanelTabs tab)
+    private void addTabToPanel(sidePanelTabs tab)
     {
         addIcon(tab.getIcon());
-        try {
-            addLine(String.valueOf(tab.getKeybinding().invoke(config)));
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            addLine("");
-        }
+        addKeybinding(tab.getKeybinding());
+    }
+
+    private void addKeybinding(Keybind keybind)
+    {
+        addLine(String.valueOf(keybind));
     }
 
 }

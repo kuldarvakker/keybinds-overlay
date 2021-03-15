@@ -15,6 +15,77 @@ public interface KeybindsOverlayConfig extends Config
 	)
 	String keybindsSection = "keybinds";
 
+	@ConfigSection(
+			position = 2,
+			name = "Order of the icons",
+			description = "Settings for the icons"
+
+	)
+	String iconOrderSection = "layout";
+
+	@ConfigItem(
+			position = 0,
+			keyName = "combat_icon",
+			name = "Combat icon",
+			description = "",
+			section = iconOrderSection
+	)
+	default int combatInt(){ return 1; }
+
+	@ConfigItem(
+			position = 1,
+			keyName = "skills_icon",
+			name = "Skills icon",
+			description = "",
+			section = iconOrderSection
+	)
+	default int skillsInt(){ return 2; }
+
+	@ConfigItem(
+			position = 2,
+			keyName = "quests_icon",
+			name = "Quests icon",
+			description = "",
+			section = iconOrderSection
+	)
+	default int questsInt(){ return 3; }
+
+	@ConfigItem(
+			position = 3,
+			keyName = "inventory_icon",
+			name = "Inventory icon",
+			description = "",
+			section = iconOrderSection
+	)
+	default int inventoryInt(){ return 4; }
+
+	@ConfigItem(
+			position = 4,
+			keyName = "equipment_icon",
+			name = "Equipment icon",
+			description = "",
+			section = iconOrderSection
+	)
+	default int equipmentInt(){ return 5; }
+
+	@ConfigItem(
+			position = 5,
+			keyName = "prayers_icon",
+			name = "Prayers icon",
+			description = "",
+			section = iconOrderSection
+	)
+
+	default int prayersInt(){ return 6; }
+
+	@ConfigItem(
+			position = 6,
+			keyName = "spellbook_icon",
+			name = "Spellbook icon",
+			description = "",
+			section = iconOrderSection
+	)
+	default int spellbookInt(){ return 7; }
 
 	@ConfigItem(
 			position = 3,

@@ -15,7 +15,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Example"
+	name = "Keybinds Overlay"
 )
 public class KeybindsOverlayPlugin extends Plugin
 {
