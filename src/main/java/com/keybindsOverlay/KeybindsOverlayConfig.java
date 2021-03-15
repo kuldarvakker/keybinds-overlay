@@ -18,7 +18,7 @@ public interface KeybindsOverlayConfig extends Config
 	@ConfigSection(
 			position = 2,
 			name = "Order of the icons",
-			description = "Settings for the icons"
+			description = "Settings for the icons \n 1 <--> 7"
 
 	)
 	String iconOrderSection = "layout";
@@ -30,7 +30,7 @@ public interface KeybindsOverlayConfig extends Config
 			description = "",
 			section = iconOrderSection
 	)
-	default int combatInt(){ return 1; }
+	default int combatLocation(){ return 1; }
 
 	@ConfigItem(
 			position = 1,
@@ -39,7 +39,7 @@ public interface KeybindsOverlayConfig extends Config
 			description = "",
 			section = iconOrderSection
 	)
-	default int skillsInt(){ return 2; }
+	default int skillsLocation(){ return 2; }
 
 	@ConfigItem(
 			position = 2,
@@ -48,7 +48,7 @@ public interface KeybindsOverlayConfig extends Config
 			description = "",
 			section = iconOrderSection
 	)
-	default int questsInt(){ return 3; }
+	default int questsLocation(){ return 3; }
 
 	@ConfigItem(
 			position = 3,
@@ -57,7 +57,7 @@ public interface KeybindsOverlayConfig extends Config
 			description = "",
 			section = iconOrderSection
 	)
-	default int inventoryInt(){ return 4; }
+	default int inventoryLocation(){ return 4; }
 
 	@ConfigItem(
 			position = 4,
@@ -66,17 +66,17 @@ public interface KeybindsOverlayConfig extends Config
 			description = "",
 			section = iconOrderSection
 	)
-	default int equipmentInt(){ return 5; }
+	default int equipmentLocation(){ return 5; }
 
 	@ConfigItem(
 			position = 5,
-			keyName = "prayers_icon",
-			name = "Prayers icon",
+			keyName = "prayer_icon",
+			name = "Prayer icon",
 			description = "",
 			section = iconOrderSection
 	)
 
-	default int prayersInt(){ return 6; }
+	default int prayerLocation(){ return 6; }
 
 	@ConfigItem(
 			position = 6,
@@ -85,7 +85,7 @@ public interface KeybindsOverlayConfig extends Config
 			description = "",
 			section = iconOrderSection
 	)
-	default int spellbookInt(){ return 7; }
+	default int spellbookLocation(){ return 7; }
 
 	@ConfigItem(
 			position = 3,
@@ -112,7 +112,7 @@ public interface KeybindsOverlayConfig extends Config
 			description = "",
 			section = keybindsSection
 	)
-	default Keybind questsKey(){ return new Keybind(KeyEvent.VK_F5, 0); }
+	default Keybind questsKey(){ return new Keybind(KeyEvent.VK_F3, 0); }
 
 	@ConfigItem(
 			position = 6,

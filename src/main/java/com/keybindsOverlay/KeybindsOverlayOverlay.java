@@ -11,7 +11,11 @@ import net.runelite.client.ui.overlay.components.PanelComponent;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class KeybindsOverlayOverlay extends Overlay {
 
@@ -36,13 +40,13 @@ public class KeybindsOverlayOverlay extends Overlay {
         panelComponent.setOrientation(ComponentOrientation.HORIZONTAL);
         panelComponent.setGap(new Point(20, 0));
 
-        addTabToPanel(sidePanelTabs.COMBAT);
-        addTabToPanel(sidePanelTabs.SKILLS);
-        addTabToPanel(sidePanelTabs.QUESTS);
-        addTabToPanel(sidePanelTabs.INVENTORY);
-        addTabToPanel(sidePanelTabs.EQUIPMENT);
-        addTabToPanel(sidePanelTabs.PRAYER);
-        addTabToPanel(sidePanelTabs.SPELLBOOK);
+
+        for (sidePanelTab tab: getOrderOfTabs())
+        {
+            if (isKeybindingDefined(getKeybinding(tab))) {
+                addTabToPanel(tab);
+            }
+        }
 
         return panelComponent.render(graphics);
     }
@@ -61,15 +65,58 @@ public class KeybindsOverlayOverlay extends Overlay {
                 .add(new ImageComponent(icon));
     }
 
-    private void addTabToPanel(sidePanelTabs tab)
+    private void addTabToPanel(sidePanelTab tab)
     {
         addIcon(tab.getIcon());
-        addKeybinding(tab.getKeybinding());
+        addKeybinding(getKeybinding(tab));
+    }
+
+    private Keybind getKeybinding(sidePanelTab tab) {
+        Keybind keybind;
+        try {
+            keybind = (Keybind) tab.getKeybindingMethod().invoke(config);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            keybind = new Keybind(KeyEvent.VK_UNDEFINED,0);
+        }
+        return keybind;
+    }
+
+    private int getLocation(sidePanelTab tab)
+    {
+        int location;
+        try {
+            location = (int) tab.getLocationMethod().invoke(config);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            Random random = new Random();
+            location = 20 + random.nextInt(14);
+        }
+        return location;
     }
 
     private void addKeybinding(Keybind keybind)
     {
         addLine(String.valueOf(keybind));
+    }
+
+    private boolean isKeybindingDefined(Keybind keybind)
+    {
+        return keybind.getKeyCode() != KeyEvent.VK_UNDEFINED;
+    }
+
+    private Set<sidePanelTab> getOrderOfTabs()
+    {
+        Map<sidePanelTab, Integer> orderOfTabs = new HashMap<>();
+        for (sidePanelTab tab: sidePanelTab.values()){
+            orderOfTabs.merge(tab, getLocation(tab), (oldVale, newValue)-> newValue);
+            getLocation(tab);
+        }
+
+        return orderOfTabs.entrySet()
+                .stream()
+                .sorted((Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new)).keySet();
+
+
     }
 
 }
