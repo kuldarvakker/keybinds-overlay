@@ -87,8 +87,7 @@ public class KeybindsOverlayOverlay extends Overlay {
         try {
             location = (int) tab.getLocationMethod().invoke(config);
         } catch (IllegalAccessException | InvocationTargetException e) {
-            Random random = new Random();
-            location = 20 + random.nextInt(14);
+            location = 0;
         }
         return location;
     }
