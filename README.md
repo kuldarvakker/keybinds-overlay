@@ -1,4 +1,4 @@
-# Keybind overlay
+# Keybind overlay [![Plugin Installs](https://img.shields.io/endpoint?url=https://i.pluginhub.info/shields/installs/plugin/keybinds-overlay)](https://runelite.net/plugin-hub) [![Plugin Rank](https://img.shields.io/endpoint?url=https://i.pluginhub.info/shields/rank/plugin/keybinds-overlay)](https://runelite.net/plugin-hub)
 * It is easier to learn keybinds, when they are at your sight.
 
 ## Quick guide
